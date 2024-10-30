@@ -13,6 +13,7 @@ namespace bankapp
         private int agency;
         private double balance;
         Client titular;
+        public int totaldeContasCriadas = 0;
         
 
         public string Account { get { return account; } set { account = value; }}
@@ -22,13 +23,14 @@ namespace bankapp
 
         public Client Titular { get { return titular; } set { titular = value; }}
 
-        public ContaCorrente(int Agency, string Account, double Balance, string name, string cpf, string profession)
+        public ContaCorrente(int Agency, double Balance, string name, string cpf, string profession)
         {
-            this.Account = Account;
+            this.Account = Guid.NewGuid().ToString().Substring(0, 9);
             this.Agency = Agency;
             this.Balance = Balance;
             titular = new Client(name, cpf, profession);
-        }
+            totaldeContasCriadas += 1;
+        }        
 
         public override string ToString()
         {
